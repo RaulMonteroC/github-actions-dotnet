@@ -3,9 +3,10 @@ name: CI
 env:
   DOTNET_VERSION: '8.0'
   ARTIFACT_ROUTE: 'artifacts'
+  ARTIFACT_NAME: 'domatrain-artifact'
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
@@ -28,9 +29,9 @@ jobs:
         run: dotnet test --configuration Release --no-build
 
       - name: Publish artifacts
-        run: dotnet publish src/GitHubActionsDotNet.Api/GitHubActionsDotNet.Api.csproj -o artifacts
+        run: dotnet publish src/GitHubActionsDotNet.Api/GitHubActionsDotNet.Api.csproj -o ${{env.ARTIFACT_ROUTE}}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: dometrain-artifact
-          path: artifacts
+          name: ${{env.ARTIFACT_NAME}}
+          path: ${{env.ARTIFACT_ROUTE}}/
