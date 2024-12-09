@@ -7,7 +7,7 @@ env:
   AZURE_WEBAPP_NAME: app-dometrain-github-actions-axel
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
   
   workflow_dispatch: 
