@@ -11,6 +11,12 @@ on:
       env:
         required: true
         type: string
+      resource_group_name:
+        required: true
+        type: string
+      app_service_name:
+        required: true
+        type: string        
     secrets:
       AZURE_CLIENT_ID:
         required: true
@@ -39,8 +45,12 @@ jobs:
           name: ${{env.ARTIFACT_NAME}}
           path: ${{env.ARTIFACT_ROUTE}}/
 
-      - name: 'Deploy'
+      - name: Deploy
         uses: azure/webapps-deploy@v2
         with: 
-          app-name: ${{env.AZURE_WEBAPP_NAME}}-${{inputs.env}}
+          app-name: ${{inputs.resource_group_name}}
+          slot-name: slot
           package: ${{env.ARTIFACT_ROUTE}}/
+
+      - name: Swap slots
+        run: az webapp deploy -g ${{inputs.resource_group_name}} -n ${{inputs.app_service_name}} -slot slot --target-slot production --verbose
