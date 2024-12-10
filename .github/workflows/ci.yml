@@ -45,8 +45,8 @@ jobs:
 
   deploy_dev:
     name: Deploy Dev
-    needs: build
-    uses: ./.github/workflows/steps-deploy.yml
+    needs: build 
+    uses: RaulMonteroC/reusable-workflows/.github/workflows/steps_deploy.yml@main
     with:
       env: dev
     secrets: inherit
@@ -54,7 +54,7 @@ jobs:
   deploy_prod:
     name: Deploy Prod
     needs: build
-    uses: ./.github/workflows/steps-deploy.yml
+    uses: RaulMonteroC/reusable-workflows/.github/workflows/steps_deploy.yml@main
     with:
       env: prod
     secrets: inherit
