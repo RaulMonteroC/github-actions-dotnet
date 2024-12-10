@@ -2,10 +2,8 @@ name: CI
 
 env:
   DOTNET_VERSION: '8.0'
-  ARTIFACT_ROUTE: 'artifacts'
-  ARTIFACT_NAME: 'domatrain-artifact'
-  AZURE_WEBAPP_NAME: app-dometrain-github-actions-axel
-  PROD_AZURE_WEBAPP_NAME: app-dometrain-github-actions-axel-prod
+  ARTIFACT_ROUTE: artifacts
+  ARTIFACT_NAME: domatrain-artifact
 
 on:
   push:
