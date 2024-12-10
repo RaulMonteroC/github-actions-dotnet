@@ -53,4 +53,4 @@ jobs:
           package: ${{env.ARTIFACT_ROUTE}}/
 
       - name: Swap slots
-        run: az webapp deploy -g ${{inputs.resource_group_name}} -n ${{inputs.app_service_name}} -slot slot --target-slot production --verbose
+        run: az webapp deploy -g ${{inputs.resource_group_name}} -n ${{inputs.app_service_name}} --slot slot --target-slot production --verbose
